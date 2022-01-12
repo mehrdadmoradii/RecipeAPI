@@ -10,6 +10,7 @@ var http_status_codes_1 = __importDefault(require("http-status-codes"));
 var body_parser_1 = __importDefault(require("body-parser"));
 var dotenv_1 = __importDefault(require("dotenv"));
 var UserRouter_1 = __importDefault(require("./routers/UserRouter"));
+var RecipeRouter_1 = __importDefault(require("./routers/RecipeRouter"));
 var app = (0, express_1.default)();
 dotenv_1.default.config();
 /********************************************************
@@ -27,6 +28,7 @@ if (process.env.NODE_ENV === 'production') {
  *                  Setting up routes
  *********************************************************/
 app.use('/api/user', UserRouter_1.default);
+app.use('/api/recipe', RecipeRouter_1.default);
 // Error handler
 app.use(function (err, req, res, next) {
     return res.status(http_status_codes_1.default.BAD_REQUEST).json({

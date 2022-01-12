@@ -6,6 +6,7 @@ import bodyParser from "body-parser";
 import dotenv from 'dotenv';
 
 import userRouter from "./routers/UserRouter";
+import recipeRouter from "./routers/RecipeRouter";
 
 const app = express();
 dotenv.config();
@@ -30,6 +31,7 @@ if (process.env.NODE_ENV === 'production') {
  *********************************************************/
 
 app.use('/api/user', userRouter);
+app.use('/api/recipe', recipeRouter);
 
 // Error handler
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {

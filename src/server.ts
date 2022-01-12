@@ -3,8 +3,12 @@ import morgan from 'morgan';
 import helmet from "helmet";
 import StatusCodes from 'http-status-codes';
 import bodyParser from "body-parser";
+import dotenv from 'dotenv';
+
+import userRouter from "./routers/UserRouter";
 
 const app = express();
+dotenv.config();
 
 /********************************************************
  *              Set basic express settings
@@ -24,6 +28,8 @@ if (process.env.NODE_ENV === 'production') {
 /*********************************************************
  *                  Setting up routes
  *********************************************************/
+
+app.use('/api/user', userRouter);
 
 // Error handler
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {

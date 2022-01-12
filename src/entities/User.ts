@@ -1,54 +1,35 @@
-export interface IUserEdit {
-    name: string,
-    username: string
-}
-
-export interface IUserGet extends IUserEdit {
+export interface IUserGetDTO {
     id: number;
+    name: string;
+    username: string;
 }
 
-export interface IUser extends IUserGet {
+export interface IUserCreateDTO {
+    name: string;
+    username: string;
     password: string;
 }
 
-export class UserEdit implements IUserEdit {
-
+export class UserGetDTO implements IUserGetDTO {
+    public id: number;
     public name: string;
     public username: string;
 
-    constructor(name: string, username: string) {
+    constructor(id: number, name: string, username: string) {
+        this.id = id;
         this.name = name;
         this.username = username;
     }
-
 }
 
-export class UserGet extends UserEdit implements IUserGet {
-
-    public id: number;
-
-   constructor(name: string, username: string, id: number) {
-       super(name, username);
-       this.id = id;
-   }
-
-}
-
-export class User extends UserGet implements IUser {
-
+export class UserCreateDTO implements IUserCreateDTO {
+    public name: string;
+    public username: string;
     public password: string;
 
-    constructor(name: string, username: string, id: number, password: string) {
-        super(name, username, id);
+    constructor(name: string, username: string, password: string) {
+        this.name = name;
+        this.username = username;
         this.password = password;
     }
-
-    asEditDto(): UserEdit {
-        return new UserEdit(this.name, this.username);
-    }
-
-    asGetDto(): UserGet {
-        return new UserGet(this.name, this.username, this.id);
-    }
-
 }

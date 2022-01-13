@@ -148,8 +148,10 @@ var RecipeDao = /** @class */ (function () {
                         return [4 /*yield*/, this.database.query(sql, [recipeId])];
                     case 3:
                         result = (_b.sent()).rows;
-                        _a = result[0], id = _a.id, name_2 = _a.name, ingredients = _a.ingredients, preptime = _a.preptime, description = _a.description, creator_id = _a.creator_id;
-                        recipe = new Recipe_1.RecipeGetDTO(id, name_2, ingredients, preptime, description, creator_id);
+                        if (result.length != 0) {
+                            _a = result[0], id = _a.id, name_2 = _a.name, ingredients = _a.ingredients, preptime = _a.preptime, description = _a.description, creator_id = _a.creator_id;
+                            recipe = new Recipe_1.RecipeGetDTO(id, name_2, ingredients, preptime, description, creator_id);
+                        }
                         return [3 /*break*/, 5];
                     case 4:
                         e_4 = _b.sent();

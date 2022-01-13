@@ -102,8 +102,10 @@ export class RecipeDao implements IRecipeDao {
         try {
             await this.database.connect();
             const result = (await this.database.query(sql, [recipeId])).rows;
-            const {id, name, ingredients, preptime, description, creator_id} = result[0];
-            recipe = new RecipeGetDTO(id, name, ingredients, preptime, description, creator_id);
+            if (result.length != 0) {
+                const {id, name, ingredients, preptime, description, creator_id} = result[0];
+                recipe = new RecipeGetDTO(id, name, ingredients, preptime, description, creator_id);
+            }
         } catch (e) {
             if (e instanceof Error)
                 console.error(e.message);
